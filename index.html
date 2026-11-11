@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="A simple daily check-in for your Fish Oil and Vitamin C after lunch.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Daily Vitamins">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Daily Vitamins</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+  <script defer src="./pwa.js"></script>
+</head>
+<body>
+  <svg aria-hidden="true" class="sprite" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="capsule" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 48a13 13 0 0 1-18-18L30 4a13 13 0 0 1 18 18Z" transform="translate(7 7) scale(.82)"/><path d="m23 23 18 18"/></g></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></g></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="citrus" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 22a21 21 0 0 0 42 0Z"/><path d="M17 27a15 15 0 0 0 30 0M32 23v13m0-13-9 10m9-10 9 10"/><path d="M32 16c0-7 5-10 12-9-1 7-5 10-12 9Z"/></g></symbol>
+  </svg>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Daily Vitamins home"><span class="brand-icon"><svg><use href="#capsule"/></svg></span><span>daily vitamins<span class="brand-dot">.</span></span></a>
+      <span class="edition">A LITTLE DAILY RITUAL</span>
+    </header>
+
+    <section class="intro" aria-labelledby="heading">
+      <p class="eyebrow"><svg><use href="#sun"/></svg> AFTER LUNCH · ONCE A DAY</p>
+      <h1 id="heading">A little care,<br><span>every day.</span></h1>
+      <p class="subtitle">Two vitamins. One simple check-in.</p>
+    </section>
+
+    <section class="today" aria-labelledby="today-heading">
+      <div class="section-heading"><div><h2 id="today-heading">Today’s check-in</h2><p id="todayDate">Loading today…</p></div><span id="count" class="count">0 of 2 taken</span></div>
+      <p id="storageWarning" class="warning" role="alert" hidden></p>
+      <div class="vitamin-grid">
+        <button type="button" id="vitamin-0" class="vitamin-card fish" aria-pressed="false" aria-label="Fish Oil, not marked taken. Tap to mark taken.">
+          <span class="card-top"><span class="number">01</span><span class="checkbox"><svg><use href="#check"/></svg></span></span>
+          <span class="vitamin-icon"><svg><use href="#capsule"/></svg></span>
+          <span class="vitamin-name">Fish Oil</span>
+          <span class="vitamin-status" id="status-0">Tap once you’ve taken it</span>
+          <span class="card-action" id="action-0">Mark as taken <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" id="vitamin-1" class="vitamin-card citrus" aria-pressed="false" aria-label="Vitamin C, not marked taken. Tap to mark taken.">
+          <span class="card-top"><span class="number">02</span><span class="checkbox"><svg><use href="#check"/></svg></span></span>
+          <span class="vitamin-icon"><svg><use href="#citrus"/></svg></span>
+          <span class="vitamin-name">Vitamin C</span>
+          <span class="vitamin-status" id="status-1">Tap once you’ve taken it</span>
+          <span class="card-action" id="action-1">Mark as taken <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+      <div class="daily-message" id="dailyMessage" role="status" aria-live="polite"><span class="message-icon" aria-hidden="true">○</span><div><strong id="messageTitle">Your check-in is waiting.</strong><p id="messageDetail">Mark each vitamin after you’ve taken it.</p></div></div>
+    </section>
+
+    <section class="history" aria-labelledby="history-heading">
+      <div class="history-heading"><h2 id="history-heading">Your last 7 days</h2><span>Small steps, every day</span></div>
+      <div id="week" class="week"></div>
+      <p class="history-note"><span class="legend-dot"></span> One dot for each vitamin marked taken</p>
+    </section>
+
+    <footer><p id="saveNote">Resets at 00:00 · Saved on this device</p><p id="pwaStatus" role="status" aria-live="polite">Preparing offline access…</p></footer>
+    <noscript><p class="warning">Enable JavaScript to record your daily check-in.</p></noscript>
+  </main>
+</body>
+</html>
